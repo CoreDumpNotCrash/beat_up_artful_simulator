@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+body {
+  display: flex;
+  font-size: 1.5em;
+  font-family: "Google Sans", sans-serif;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 400;
+}
