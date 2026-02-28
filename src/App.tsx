@@ -40,6 +40,7 @@ export function App() {
       <button onClick={upgradeOnClick} className="button">
         Upgrade({upgradeCost} clicks)
       </button>
+      <h1>if you came from discord you are smelly poo fart</h1>
     </div>
   );
 }
