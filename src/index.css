@@ -12,3 +12,11 @@ body {
 h1 {
   font-weight: 400;
 }
+
+.button {
+  transition: 1s;
+}
+
+.button:active {
+  font-size: 5px;
+}
