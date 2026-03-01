@@ -13,7 +13,7 @@ import "./index.css";
 
 export function App() {
   const [beatsUp, setBeatsUp] = useState(0);
-  const [multiplayer, setMultiplayer] = useState(0);
+  const [multiplayer, setMultiplayer] = useState(1);
   const [upgradeCost, setUpgradeCost] = useState(50);
 
   const [isPlaying, setIsPlaying] = useState(false);

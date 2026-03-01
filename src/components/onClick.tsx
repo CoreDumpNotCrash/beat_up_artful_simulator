@@ -15,8 +15,9 @@ export const OnClickComponent: React.FC<OnClickProps> = ({
   image,
 }) => {
   function artfulOnClick() {
+    let multiplayerTemp = multiplayer <= 0? 1 : multiplayer
     playSound(hitSound);
-    setBeatsUp((prev: number) => prev + Math.pow(2, multiplayer));
+    setBeatsUp((prev: number) => prev + multiplayerTemp);
   }
   return (
     <>
