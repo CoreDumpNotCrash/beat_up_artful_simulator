@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
-import playSound from "./tools/playSound";
+import { ToggleMusicComponent } from "./components/toggleMusic";
+import { UpgradeOnClickComponent } from "./components/upgradeOnClick";
+import { OnClickComponent } from "./components/onClick";
 
 import artfulImage from "./assets/image.png";
 import hitSound from "./assets/hit.mp3";
@@ -11,42 +13,11 @@ import "./index.css";
 
 export function App() {
   const [beatsUp, setBeatsUp] = useState(0);
-  const [multiplayer, setMupliplayer] = useState(0);
+  const [multiplayer, setMultiplayer] = useState(0);
   const [upgradeCost, setUpgradeCost] = useState(50);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio(music));
-
-  function artfulOnClick() {
-    playSound(hitSound);
-    setBeatsUp((prev) => prev + Math.pow(2, multiplayer));
-  }
-
-  const toggleMusic = () => {
-    const audio = audioRef.current;
-
-    if (isPlaying) {
-      audio.pause();
-      audio.currentTime = 0;
-    } else {
-      audio.loop = true;
-      audio.volume = 0.5;
-      audio.play().catch(() => {});
-    }
-
-    setIsPlaying(!isPlaying);
-  };
-
-  function upgradeOnClick() {
-    if (beatsUp < upgradeCost) {
-      playSound(discardSound);
-      return;
-    }
-    playSound(buySound);
-    setUpgradeCost(upgradeCost * 2);
-    setBeatsUp(beatsUp - upgradeCost);
-    setMupliplayer(multiplayer + 1);
-  }
 
   return (
     <div className="app">
@@ -55,14 +26,31 @@ export function App() {
       </h3>
       <h1>Beat up Artful!!!</h1>
       <p>(hint: click on the artful if that's not obvious)</p>
-      <button onClick={artfulOnClick} className="button">
-        <img id="artful" src={artfulImage} alt="artful" />
-      </button>
+      <OnClickComponent
+        hitSound={hitSound}
+        multiplayer={multiplayer}
+        setBeatsUp={setBeatsUp}
+        image={artfulImage}
+      />
       <p>You beated up Artful {beatsUp} times.</p>
-      <button onClick={upgradeOnClick} className="button">
-        Upgrade({upgradeCost} clicks)
-      </button>
-      <button onClick={toggleMusic}>Toggle Music</button>
+      <p>Your hits multiplayer: {multiplayer}</p>
+      <div>
+        <UpgradeOnClickComponent
+          beatsUp={beatsUp}
+          upgradeCost={upgradeCost}
+          discardSound={discardSound}
+          buySound={buySound}
+          setUpgradeCost={setUpgradeCost}
+          setBeatsUp={setBeatsUp}
+          setMultiplayer={setMultiplayer}
+          multiplayer={multiplayer}
+        />
+        <ToggleMusicComponent
+          audioRef={audioRef}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
+      </div>
     </div>
   );
 }
