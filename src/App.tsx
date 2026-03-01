@@ -45,6 +45,8 @@ export function App() {
           setMultiplayer={setMultiplayer}
           multiplayer={multiplayer}
         />
+      </div>
+      <div>
         <ToggleMusicComponent
           audioRef={audioRef}
           isPlaying={isPlaying}
