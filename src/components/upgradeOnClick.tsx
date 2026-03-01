@@ -30,7 +30,7 @@ export const UpgradeOnClickComponent: React.FC<UpgradeOnClickProps> = ({
     playSound(buySound);
     setUpgradeCost(upgradeCost * 2);
     setBeatsUp(beatsUp - upgradeCost);
-    setMultiplayer(multiplayer + 1);
+    setMultiplayer(multiplayer * 2);
   }
 
   return (
